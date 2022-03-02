@@ -55,11 +55,12 @@ clean:
 	rm -f verify.txt trace.txt diff.txt
 	rm -f *.log *.jou
 	rm -rf vivado/*
-	rm -rf vivado/.*
 	rm -rf .Xil/
 allclean:
 	make clean
 	rm -rf main.cache main.hw main.runs main.sim main.ip_user_files
+	rm -rf cnn/*
+
 resultclean:
 	rm -f result/*.txt
 
@@ -71,7 +72,7 @@ bit:
 	mkdir -p vivado/ip
 	${VIVADO} -mode batch -source build.tcl
 	mv project.rpt vivado
-	cp vivado/vivado.runs/impl_1/*.bit bitstream/
+	cp vivado/vivado.runs/impl_1/*.bit bin/
 ###############################################################################
 # verify
 

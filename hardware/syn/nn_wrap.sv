@@ -190,7 +190,7 @@ module nn_wrap(
         nn_0_data <= w_nn_0_en ? w_nn_0_odata : nn_0_data;
     end
 
-    mydataset_lane nn_0 (
+    QuantCNN nn_0 (
         .ap_clk(CLK), 
         .ap_rst(RST),  
         .ap_start(r_nn_0_start),

@@ -1,8 +1,6 @@
 import argparse
-import os
 import cv2
 import numpy as np
-import warnings
 import random
 import math
 import pickle
@@ -197,7 +195,6 @@ def generate_image(W, H, dW, dH, L, theta, img_num, line_width):
 
 
 def main():
-    warnings.simplefilter('ignore')
     parser = argparse.ArgumentParser(description="ROAD DATASET CREATION")
     parser.add_argument("--img-size", type=int, default=32, metavar="N",
                         help="image size (default: 32x32)")

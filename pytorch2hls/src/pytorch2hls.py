@@ -1,42 +1,47 @@
-
-import argparse
-from enum import Flag
-from scipy.sparse import data
-from torchvision import datasets, transforms
-import warnings
+# standard library
+import os
+import time
+import math
 import pickle
-from PIL import Image
-import pandas as pd
+
+# others
+import argparse
 import numpy as np
-
-from sklearn.model_selection import train_test_split
-
-import pdb
-import torch
-from mydataset import MyDataset
-
-import pickle
-import argparse
+import onnx
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torch.utils.data import DataLoader
 from torch.optim.lr_scheduler import StepLR
-import warnings
+from torchvision.utils import save_image
+from torchvision import transforms
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
+
 
 from mynet import MyNet
 
-import math
-import os
-import onnx
-from torchvision.utils import save_image
 
-import time
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-from sklearn.metrics import confusion_matrix
+class MyDataset:
+    def __init__(self, X, y, height, width, valid=False):
+        self.X = X
+        self.y = y
+        self.height = height
+        self.width  = width
+        trans = [
+                transforms.Resize((self.height, self.width)),
+                transforms.ToTensor()
+            ]
+        self.trans = transforms.Compose(trans)
+
+    def __len__(self):
+        return len(self.X)
+
+    def __getitem__(self, pos):
+        X = self.trans(self.X[pos])
+        y = self.y[pos]
+        return X, y
 
 class Timer:
     def __init__(self):
@@ -358,7 +363,7 @@ def model_to_hls(model, frac_bits, int_bits, dummy_input, kernel_name, debug=Fal
         line += name.replace('.', '_') + '[] = ' + str(tensor_to_cpp_array(model.state_dict()[name]))
     weight = line
 
-    torch.onnx.export(model, dummy_input, 'tmp.onnx', verbose=True)
+    torch.onnx.export(model, dummy_input, 'tmp.onnx', verbose=False)
     onnx_model = onnx.load('tmp.onnx')
     os.remove('tmp.onnx')
 
@@ -502,7 +507,6 @@ def gen_hex_data(dataset, num, target_dir, csv_name):
     csv.close()
 
 def main():
-    warnings.simplefilter('ignore')
     # Training settings
     parser = argparse.ArgumentParser(description="PyTorch MNIST Example")
     parser.add_argument('--pkls', metavar='S', type=str, nargs='*', help='image pkl files')
