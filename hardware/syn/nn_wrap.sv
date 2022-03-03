@@ -34,7 +34,7 @@ module nn_wrap(
     wire [ 9:0] w_cap_addr_x;
     wire [ 9:0] w_cap_addr_y;
     wire        w_cap_en;
-    ov7725 ov7725_0(
+    ov7670 ov7670_0(
         CLK,
         RST,
         

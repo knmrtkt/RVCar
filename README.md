@@ -1,9 +1,6 @@
 # RVCar (RISC-V motor car)
----
-
 
 ## Installation
----
 
 ### Requirements
 
@@ -38,7 +35,6 @@ $ cd RVCar
 
 
 ## Getting started (linetrace) 
----
 
 ### Assemble a motor car vehicle 
 
@@ -87,7 +83,6 @@ $ make
 + Turn on the power of motor car and adjust the gain value of the camera using switch 0-7 (0-min, 255-max).
 
 ## Source code description
----
 
 + The **hardware** directory contains the RVCore system source code.
 
