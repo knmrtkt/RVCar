@@ -31,6 +31,7 @@
 
 #include "riscv-virt.h"
 #include "interrupt.h"
+#include "console.h"
 
 #define ms(x) (x/portTICK_RATE_MS)
 
@@ -118,7 +119,9 @@ void TaskLineTrace(void *pvParameters)  // This is a task.
 
     for (;;) // A Task shall never return or exit.
     {
-        get_EXINT(nn0_exint, &infer, portMAX_DELAY, 0x0000000B);
+        //get_EXINT(nn0_exint, &infer, portMAX_DELAY, 0x0000000B);
+        //get_EXINT(nn0_exint, &infer, portMAX_DELAY, EXNN_ARG_START | EXNN_ARG_BIN);
+        get_EXINT(nn0_exint, &infer, portMAX_DELAY, EXNN_ARG_START);
 		switch(infer){
         case 0 : set_PWM(DUTY_HIGH, DUTY_HIGH); break;
         case 1 : set_PWM(DUTY_TURN, DUTY_LOW ); break;
@@ -131,7 +134,9 @@ void TaskLineTrace(void *pvParameters)  // This is a task.
 
 int main( void )
 {
+    _console_init();
 	vSendString("Hello FreeRTOS!!\n");
+    lcd_print("Hello FreeRTOS!!\n");
 
 	xTaskCreate(
         TaskLineTrace

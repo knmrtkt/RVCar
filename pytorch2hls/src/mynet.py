@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 
+# pytorch2hls supports only nn.modules.
 class MyNet(nn.Module):
     def __init__(self, class_num, bias=True):
         super().__init__()

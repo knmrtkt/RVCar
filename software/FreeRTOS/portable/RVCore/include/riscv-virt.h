@@ -62,6 +62,10 @@
 #define EXKEY_IRQ           1
 #define EXNN_0_IRQ          2
 
+#define EXNN_ARG_START      1 << 1
+#define EXNN_ARG_RESIZE     1 << 2
+#define EXNN_ARG_BIN        1 << 3
+
 #define READ_BASE_ADDR      MMIO_ADDR + 0x1000
 
 #define WRITE_BASE_ADDR     MMIO_ADDR + 0x2000

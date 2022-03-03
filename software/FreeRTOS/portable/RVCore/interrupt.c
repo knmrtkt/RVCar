@@ -51,7 +51,7 @@ EXINT* init_EXINT(uint32_t irq, uint32_t queue_size, enum EXINT_Q_FULL_ACTION q_
 
 BaseType_t get_EXINT(EXINT *exint, uint32_t *val_p, TickType_t delay, uint32_t arg)
 {
-    *(((uint32_t *)EXINT_BASR_ADDR)+exint->IRQ_no) = arg;
+    *(((uint32_t *)EXINT_BASR_ADDR)+exint->IRQ_no) = arg|0x00000001;
     *(((uint32_t *)EXINT_BASR_ADDR)+exint->IRQ_no) = 0;
     //xSemaphoreTake(exint->Semaphore, delay);
     xQueueReceive(exint->Queue, val_p, delay);

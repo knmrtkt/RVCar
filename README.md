@@ -67,7 +67,7 @@ $ make bit
 
 ### Write bitstream
 + We recommend that write the bitstream file to USB memory. (hardware/bin/nexys4ddr.bit)
-+ Format an USB memory as FAT-32 and copy the bitstream file into it, and insert the USB memory into USB connector of NexysA7 board.
++ Format an USB memory as FAT-32 and copy the bitstream file into the root directory of it, and insert the USB memory into USB connector of NexysA7 board.
 
 ### RISC-V program binary
 + Compile RISC-V program binary for linetrace.
@@ -76,7 +76,7 @@ $ cd ../software/linetrace
 $ make
 ```
 
-+ Format an micro SD card as FAT-32 and copy the RISC-V program binary file (hardware/bin/boot.bin) into it, and insert the micro SD card into micro SD connector of NexysA7 board.
++ Format an micro SD card as FAT-32 and copy the RISC-V program binary file (hardware/bin/boot.bin) into the root directory of it, and insert the micro SD card into micro SD connector of NexysA7 board.
 
 ### Runnning the cource
 

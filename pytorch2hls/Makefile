@@ -80,7 +80,7 @@ IMAGE_HEIGHT = 32
 DATASET_DEPEND = $(PKLS)
 
 # training
-epochs = 1
+epochs = 10
 batch_size = 256
 SEED = 42
 
