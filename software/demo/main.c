@@ -48,7 +48,7 @@ void TaskA(void *pvParameters)  // This is a task.
 
     for (;;) // A Task shall never return or exit.
     {
-        get_EXINT(key_exint, &key, portMAX_DELAY, 0x00000003);
+        get_EXINT(key_exint, &key, portMAX_DELAY, 0);
         if(key == 0x00)
         {
             vSendString("Key Q is empty\n");
