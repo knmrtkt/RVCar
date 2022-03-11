@@ -35,7 +35,7 @@ module ov7725(
     /************************************************************************************************************/
     wire [15:0] command;
     wire        taken, done;
-    m_camera_reg cregs0 (clk_cam_i2c, r_resend, taken, command, done, w_gain);
+    m_camera_reg_ov7725 cregs0 (clk_cam_i2c, r_resend, taken, command, done, w_gain);
     m_i2c_camera i2ccamera0 (clk_cam_i2c, siod, sioc, taken, ~done, 8'h42, command);
 
     reg [15:0] r_cam_dout    = 0; // 16bit-color, RGB565
@@ -191,7 +191,7 @@ module AsyncFIFO #(
 
 endmodule
 
-module m_camera_reg (w_clk, resend, advance, send_reg, done, w_gain);
+module m_camera_reg_ov7725 (w_clk, resend, advance, send_reg, done, w_gain);
     input  wire        w_clk;
     input  wire        resend;
     input  wire        advance;

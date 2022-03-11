@@ -57,8 +57,8 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-sbox/
-dataset/
+sbox/*
+dataset/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
